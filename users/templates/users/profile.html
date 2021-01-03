@@ -1,0 +1,57 @@
+{% extends 'blog/base.html' %}
+
+
+{% block title %}
+    Кабинет пользователя
+{% endblock %}
+
+
+{% block content %}
+    <h1>Кабинет пользователя</h1>
+    <div class="d-flex text-muted pt-3">
+      <img class="bd-placeholder-img flex-shrink-0 me-2 mr-2 rounded" width="64" height="64" src="{{ user.profile.img.url }}">
+
+      <p class="pb-3 mb-0 small lh-sm border-bottom">
+        <strong class="d-block text-gray-dark">@{{user.username}}</strong>
+
+        {% if user.email %}
+          <strong>Email: </strong>{{user.email}}
+        {% endif %}
+      </p>
+    </div>
+
+    <form method="POST" enctype="multipart/form-data" class="form-register mt-4">
+        {% csrf_token %}
+        {{ updateUserForm.as_p }}
+        <p class="mt-4">Изображение профиля:</p>
+        <p>На данный момент: {{ user.profile.img }}</p>
+        {{ profileForm.as_p }}
+        {{ genderAndAccept.as_p }}
+
+        <button class="btn btn-outline-warning" type="submit">Обновить</button>
+    </form>
+
+
+{% endblock %}
+
+
+
+{% block aside_block %}
+<h4 class="mt-2">Интересные статьи</h4>
+<img src="https://itproger.com/img/tasks/1607881168.jpg" class='img-thumbnail'>
+<p>В работе любого разработчика важную роль играет нестандартное мышление. Не хотите проверить себя? Инженеры уже приготовили для вас необычную и очень любопытную задачу!</p>
+
+<a href="https://itproger.com/tasks/vrashtayushtiysya-disk-zadachka-na-logiku-dlya-programmistov" target="_blank">
+                <button class="btn btn-warning">Посмотреть</button>
+
+</a>
+
+
+<img src="https://itproger.com/img/tasks/1587638143.jpg" class='img-thumbnail mt-4'>
+<p>Небольшая логическая задача связанная с включением и выключением вентилятора. Попробуйте разгадать самостоятельно, после чего проверьте свой ответ с верным решением.</p>
+
+<a href="https://itproger.com/tasks/zadacha-pro-ventilyator" target="_blank">
+                <button class="btn btn-warning">Посмотреть</button>
+
+</a>
+{% endblock %}

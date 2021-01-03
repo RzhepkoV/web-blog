@@ -1,0 +1,53 @@
+{% extends 'blog/base.html' %}
+
+
+{% block title %}
+    {{title}}
+{% endblock %}
+
+
+{% block content %}
+    <!-- <h1>{{title}}</h1> -->
+    <!-- {{ news }} -->
+        <div class="alert alert-light">
+            <h1>{{ object.title }}</h1>
+            <p>{{ object.text|safe }}</p>
+            <div class="row">
+              <div class="">
+                <img src="{{ object.author.profile.img.url }}" alt="{{ object.author }}" class="user_images">
+              </div>
+              <div class="mt-2">
+                <span class="text-muted">Публикация: {{ object.date|date:"d E Yг. в H:i" }}</span>
+                <p><b>Автор:</b> <a href="{% url 'user-news' object.author %}">{{ object.author }}</a></p>
+              </div>
+            </div>
+            {% if object.author == user %}
+            <hr>
+            <a href="{% url 'news-update' object.id %}" class="btn btn-info">Обновить статью</a>
+            <a href="{% url 'news-delete' object.id %}" class="btn btn-danger">Удалить статью</a>
+            {% endif %}
+        </div>
+{% endblock %}
+
+
+{% block aside_block %}
+<h4 class="mt-2">Интересные статьи</h4>
+
+<img src="https://itproger.com/img/tasks/1587638143.jpg" class='img-thumbnail'>
+<p>Небольшая логическая задача связанная с включением и выключением вентилятора. Попробуйте разгадать самостоятельно, после чего проверьте свой ответ с верным решением.</p>
+
+<a href="https://itproger.com/tasks/zadacha-pro-ventilyator" target="_blank">
+                <button class="btn btn-warning">Посмотреть</button>
+
+</a>
+
+
+<img src="https://itproger.com/img/tasks/1607881168.jpg" class='img-thumbnail  mt-4'>
+<p>В работе любого разработчика важную роль играет нестандартное мышление. Не хотите проверить себя? Инженеры уже приготовили для вас необычную и очень любопытную задачу!</p>
+
+<a href="https://itproger.com/tasks/vrashtayushtiysya-disk-zadachka-na-logiku-dlya-programmistov" target="_blank">
+                <button class="btn btn-warning">Посмотреть</button>
+
+</a>
+
+{% endblock %}
