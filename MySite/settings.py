@@ -127,7 +127,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'varzhepko@gmail.com'
 EMAIL_HOST_PASSWORD = 'vwkjosqnjtzlydzr'
 
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
